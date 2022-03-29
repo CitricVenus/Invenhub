@@ -17,8 +17,25 @@ function dataFetch() {
         console.log(data);
     });
 }
+async function DataPost(){
 
+    const data = { id: "1", nombre: "test", precio: "1", cantidad: "1", UID: "1" };
 
+    fetch("http://localhost:3000/inv", {
+    method: 'POST', // or 'PUT'
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+    console.log('Success:', data);
+    })
+    .catch((error) => {
+    console.error('Error:', error);
+    });
+}
 
 function Inventory() {
     let inventoryItems = [...data["inv"]];
@@ -29,6 +46,8 @@ function Inventory() {
                 <BiSearch />
                 <input type='text' placeholder='Buscar' />
             </span>
+            <button onClick={DataPost}>POST</button>
+            <button onClick={dataFetch}>FETCH</button>
             <table id='inv-table'>
                 <tbody id='inv-tbody'>
                     <tr className='inv-row'>
@@ -51,7 +70,6 @@ function Inventory() {
                             Agregar
                         </th>
                     </tr>
-                    <button onClick={dataFetch}>FETCH</button>
                     
                     {inventoryItems.map((item, i) => (
                         <tr className='inv-row' key={item.UID + i}>
