@@ -9,6 +9,17 @@ const icoStyle = {
     color: "gray",
 };
 
+function dataFetch() {
+    fetch("http://localhost:3000/inv").then((res) => {
+        return res.json();
+    }
+    ).then((data) => {
+        console.log(data);
+    });
+}
+
+
+
 function Inventory() {
     let inventoryItems = [...data["inv"]];
 
@@ -40,6 +51,8 @@ function Inventory() {
                             Agregar
                         </th>
                     </tr>
+                    <button onClick={dataFetch}>FETCH</button>
+                    
                     {inventoryItems.map((item, i) => (
                         <tr className='inv-row' key={item.UID + i}>
                             <td className='inv-col'>{item.nombre}</td>
