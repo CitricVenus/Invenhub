@@ -1,6 +1,8 @@
 import "./entry.css";
 import { BiDuplicate } from "react-icons/bi";
 import { useState } from "react";
+import DashBackBtn from "../General/DashBackBtn";
+import DashSectTtl from "../General/DashSectTtl";
 
 const icoStyle = {
     width: "150px",
@@ -8,13 +10,6 @@ const icoStyle = {
     color: "gray",
     marginRight: "100px",
 };
-
-
-
-
-
-
-
 
 function Entry() {
 
@@ -76,17 +71,21 @@ function Entry() {
 
     return (
         <div className='bg-page' id='entry-holder'>
-            <BiDuplicate style={icoStyle} />
-            <form onSubmit={handleSubmit}>
-                <div id='entry-items'>
-                   <input type='text' name='nombre' placeholder='Nombre' required onChange={(e) => setNombre(e.target.value)} value={Nombre} />
-                   <input type='text' name='precio' placeholder='Precio' required onChange={(e) => setPrecio(e.target.value)} value={Precio} />
-                   <input type='text' name='cantidad' placeholder='Cantidad' required onChange={(e)=> setCantidad(e.target.value)} value={Cantidad}/>
-                   <input type='text' name='UID' placeholder='UID' required onChange={(e)=> setUID(e.target.value)} value={UID} />
-                   <button type='submit'>Agregar</button>
-                   {Error && <p>{Error}</p>}
-                </div>
-            </form>
+            <DashBackBtn />
+            <DashSectTtl text="Entradas"/>
+            <div className="entry-items-holder">
+                <BiDuplicate style={icoStyle} />
+                <form onSubmit={handleSubmit}>
+                    <div id='entry-items'>
+                        <input type='text' name='nombre' placeholder='Nombre' required onChange={(e) => setNombre(e.target.value)} value={Nombre} />
+                        <input type='text' name='precio' placeholder='Precio' required onChange={(e) => setPrecio(e.target.value)} value={Precio} />
+                        <input type='text' name='cantidad' placeholder='Cantidad' required onChange={(e)=> setCantidad(e.target.value)} value={Cantidad}/>
+                        <input type='text' name='UID' placeholder='UID' required onChange={(e)=> setUID(e.target.value)} value={UID} />
+                        <button type='submit'>Agregar</button>
+                        {Error && <p>{Error}</p>}
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

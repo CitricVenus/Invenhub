@@ -2,6 +2,8 @@ import "./inventory.css";
 import { BiSearch } from "react-icons/bi";
 import { AiFillPlusCircle, AiFillStop } from "react-icons/ai";
 import data from "./testItems.json";
+import DashBackBtn from "../General/DashBackBtn";
+import DashSectTtl from "../General/DashSectTtl";
 
 const icoStyle = {
     width: "max-content",
@@ -42,6 +44,8 @@ function Inventory() {
 
     return (
         <div className='bg-page' id='inv-holder'>
+            <DashBackBtn />
+            <DashSectTtl text="Inventario"/>
             <span id='inv-search-bar'>
                 <BiSearch />
                 <input type='text' placeholder='Buscar' />

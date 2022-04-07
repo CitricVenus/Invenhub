@@ -25,20 +25,21 @@
 }
 
 #dash-ttl {
-    width: 100%;
+    width: 120%;
+    justify-self: center;
     text-align: center;
-    background-color: var(--second-bg-color);
     font-style: italic;
     padding: 10px 0;
     border: solid 1px black;
+    font-size: 45px;
 }
 
 #income {
-    background-color: var(--second-bg-color);
     font-style: italic;
     padding: 10px 15px;
     border: solid 1px black;
-    width: min-content;
+    width: 30%;
+    min-width: min-content;
     white-space: nowrap;
 }
 
@@ -51,13 +52,15 @@
 .dash-opt {
     width: 30%;
     max-width: 350px;
-    min-height: 300px;
+    min-height: 400px;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
 }
 
-.dash-opt-btn {
-    width: 100%;
-    height: 150px;
+.dash-opt > h3{
+    font-weight: normal;
+    font-size: 30px;
 }

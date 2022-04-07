@@ -1,12 +1,13 @@
 import "./dashboard.css";
 import { BiBookBookmark, BiWallet, BiPackage } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const icoStyle = {
     height: "max-content",
     width: "70%",
     color: "gray",
     backgroundColor: "white",
-    padding: "40px",
+    padding: "10%",
     overflow: "visible",
     borderRadius: "100%",
     marginBottom: "25px",
@@ -14,6 +15,14 @@ const icoStyle = {
 };
 
 function Dashboard() {
+
+    const navigate = useNavigate()
+
+    const handleClick = (route) => {
+        navigate(route)
+    }
+
+
     return (
         <div className='bg-page' id='dash-holder'>
             <button className='dash-btn'>Log out</button>
@@ -22,18 +31,18 @@ function Dashboard() {
                 <h1 id='dash-ttl'>Dashboard</h1>
             </div>
             <section id='dash-opts'>
-                <div className='dash-opt'>
+                <button className='dash-opt' onClick={()=> handleClick('/entry')}>
                     <BiPackage style={icoStyle} />
-                    <button className='dash-opt-btn'>Entradas</button>
-                </div>
-                <div className='dash-opt'>
+                    <h3>Entradas</h3>
+                </button>
+                <button className='dash-opt' onClick={()=> handleClick('/exit')}>
                     <BiWallet style={icoStyle} />
-                    <button className='dash-opt-btn'>Salidas</button>
-                </div>
-                <div className='dash-opt'>
+                    <h3>Salidas</h3>
+                </button>
+                <button className='dash-opt' onClick={()=> handleClick('/inventory')}>
                     <BiBookBookmark style={icoStyle} />
-                    <button className='dash-opt-btn'>Inventario</button>
-                </div>
+                    <h3>Inventario</h3>
+                </button>
             </section>
         </div>
     );

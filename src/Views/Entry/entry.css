@@ -1,8 +1,23 @@
 #entry-holder {
     display: flex;
     align-items: center;
+    padding: 50px 50px;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.entry-items-holder{
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 0px 50px;
+    flex-direction: row;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.entry-items-holder > form{
+    width: 100%;
+    max-width: 300px;
 }
 
 #entry-items {
@@ -10,7 +25,7 @@
     flex-direction: column;
     row-gap: 25px;
     width: 100%;
-    max-width: 500px;
+    max-width: 300px;
     align-items: center;
 }
 

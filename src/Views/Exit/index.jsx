@@ -3,6 +3,8 @@ import { BiSearch } from "react-icons/bi";
 import { AiFillPlusCircle, AiFillStop } from "react-icons/ai";
 import data from "../Inventory/testItems.json";
 import { useState } from "react";
+import DashBackBtn from "../General/DashBackBtn";
+import DashSectTtl from "../General/DashSectTtl";
 
 const icoStyle = {
     width: "max-content",
@@ -98,6 +100,8 @@ function Exit() {
 
     return (
         <div className='bg-page' id='ext-holder'>
+            <DashBackBtn />
+            <DashSectTtl text="Salidas"/>
             <span id='ext-search-bar'>
                 <BiSearch />
                 <input type='text' placeholder='Buscar' />
