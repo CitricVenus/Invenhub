@@ -102,5 +102,10 @@
             "cantidad": 112,
             "precio": 1234
         }
+    ],
+
+    "usrs": [
+        { "nombre": "admin", "pass": "root", "admin": true },
+        { "nombre": "juan", "pass": "123", "admin": false }
     ]
 }

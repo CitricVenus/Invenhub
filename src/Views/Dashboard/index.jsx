@@ -14,32 +14,38 @@ const icoStyle = {
     display: "flex",
 };
 
-function Dashboard() {
-
-    const navigate = useNavigate()
+function Dashboard({ setUser }) {
+    const navigate = useNavigate();
 
     const handleClick = (route) => {
-        navigate(route)
-    }
-
+        navigate(route);
+    };
 
     return (
         <div className='bg-page' id='dash-holder'>
-            <button className='dash-btn'>Log out</button>
+            <button
+                className='dash-btn'
+                onClick={() => {
+                    handleClick("/");
+                    setUser(null);
+                }}
+            >
+                Log out
+            </button>
             <div className='dash-ttl-holder'>
                 <span id='income'>Income: $999,999,999</span>
                 <h1 id='dash-ttl'>Dashboard</h1>
             </div>
             <section id='dash-opts'>
-                <button className='dash-opt' onClick={()=> handleClick('/entry')}>
+                <button className='dash-opt' onClick={() => handleClick("/entry")}>
                     <BiPackage style={icoStyle} />
                     <h3>Entradas</h3>
                 </button>
-                <button className='dash-opt' onClick={()=> handleClick('/exit')}>
+                <button className='dash-opt' onClick={() => handleClick("/exit")}>
                     <BiWallet style={icoStyle} />
                     <h3>Salidas</h3>
                 </button>
-                <button className='dash-opt' onClick={()=> handleClick('/inventory')}>
+                <button className='dash-opt' onClick={() => handleClick("/inventory")}>
                     <BiBookBookmark style={icoStyle} />
                     <h3>Inventario</h3>
                 </button>

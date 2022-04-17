@@ -34,3 +34,8 @@
     border-style: solid;
     border: solid 1px black;
 }
+
+p {
+    color: red;
+    height: 20px;
+}
