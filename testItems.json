@@ -1,111 +1,126 @@
 {
-    "inv": [
-        {
-            "nombre": "Jabón zote",
-            "UID": "12312312",
-            "cantidad": 112,
-            "precio": 43
-        },
-        {
-            "nombre": "Tortillas",
-            "UID": "1231244",
-            "cantidad": 1112,
-            "precio": 235
-        },
-        {
-            "nombre": "Super producto gigante hyper grande",
-            "UID": "123122342342342342342312",
-            "cantidad": 22112,
-            "precio": 2145
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        },
-        {
-            "nombre": "Donas",
-            "UID": "234235",
-            "cantidad": 112,
-            "precio": 1234
-        }
-    ],
-
-    "usrs": [
-        { "nombre": "admin", "pass": "root", "admin": true },
-        { "nombre": "juan", "pass": "123", "admin": false }
-    ]
+  "inv": [
+    {
+      "nombre": "Jabón zote",
+      "UID": "12312312",
+      "cantidad": 112,
+      "precio": 43
+    },
+    {
+      "nombre": "Tortillas",
+      "UID": "1231244",
+      "cantidad": 1112,
+      "precio": 235
+    },
+    {
+      "nombre": "Super producto gigante hyper grande",
+      "UID": "123122342342342342342312",
+      "cantidad": 22112,
+      "precio": 2145
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    },
+    {
+      "nombre": "Donas",
+      "UID": "234235",
+      "cantidad": 112,
+      "precio": 1234
+    }
+  ],
+  "usrs": [
+    {
+      "id": 1,
+      "nombre": "admin",
+      "pass": "root",
+      "admin": true
+    },
+    {
+      "id": 2,
+      "nombre": "juan",
+      "pass": "123",
+      "admin": false
+    },
+    {
+      "nombre": "test",
+      "pass": "123",
+      "admin": false,
+      "id": 3
+    }
+  ]
 }

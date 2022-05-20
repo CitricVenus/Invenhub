@@ -52,3 +52,8 @@ code {
     align-self: center;
     margin: 0;
 }
+
+.error {
+    color: red;
+    height: 20px;
+}

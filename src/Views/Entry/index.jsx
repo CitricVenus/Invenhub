@@ -82,7 +82,7 @@ function Entry() {
                         <input type='text' name='cantidad' placeholder='Cantidad' required onChange={(e)=> setCantidad(e.target.value)} value={Cantidad}/>
                         <input type='text' name='UID' placeholder='UID' required onChange={(e)=> setUID(e.target.value)} value={UID} />
                         <button type='submit'>Agregar</button>
-                        {Error && <p>{Error}</p>}
+                        {Error && <p className="error">{Error}</p>}
                     </div>
                 </form>
             </div>

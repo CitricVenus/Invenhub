@@ -48,7 +48,7 @@ function Login({ setUser }) {
                     Ingresar
                 </button>
             </form>
-            <p>{hasError ? "Los datos ingresados son incorrectos" : ""}</p>
+            <p className="error">{hasError ? "Los datos ingresados son incorrectos" : ""}</p>
         </div>
     );
 }

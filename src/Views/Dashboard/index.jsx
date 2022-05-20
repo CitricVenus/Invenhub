@@ -14,7 +14,7 @@ const icoStyle = {
     display: "flex",
 };
 
-function Dashboard({ setUser }) {
+function Dashboard({ setUser, user }) {
     const navigate = useNavigate();
 
     const handleClick = (route) => {
@@ -32,6 +32,15 @@ function Dashboard({ setUser }) {
             >
                 Log out
             </button>
+            {user.admin && 
+            <button
+                className='dash-btn'
+                onClick={() => {
+                    handleClick("/createusr");
+                }}
+            >
+                Create User
+            </button>}
             <div className='dash-ttl-holder'>
                 <span id='income'>Income: $999,999,999</span>
                 <h1 id='dash-ttl'>Dashboard</h1>

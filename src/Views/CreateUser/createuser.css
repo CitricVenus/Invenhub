@@ -1,0 +1,46 @@
+#create-holder{
+    display: flex;
+    align-items: center;
+    padding: 50px 50px;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.create-form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    width: 100%;
+    max-width: 300px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.create-form > input {
+    width: 100%;
+    border-style: none;
+    border: solid black 1px;
+    padding: 10px;
+}
+
+.create-form > button {
+    width: 150px;
+    padding: 10px 0px;
+    border-radius: 10px;
+    border-style: solid;
+    border: solid 1px black;
+}
+
+.create-admin {
+    display: flex;
+    column-gap: 20px;
+    width: 100%;
+    align-content: center;
+}
+
+.create-admin > input {
+    height: 20px;
+    width: 20px;
+    margin: 0;
+}
