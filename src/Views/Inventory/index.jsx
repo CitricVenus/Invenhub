@@ -36,7 +36,7 @@ function Inventory() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3000/inv").then((res) => {
+        fetch("/inv").then((res) => {
             return res.json();
         }
         ).then((dat) => {

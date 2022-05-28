@@ -28,7 +28,7 @@ function Entry() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
         };
-        fetch('http://localhost:3000/inv', requestOptions)
+        fetch('/inv', requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();

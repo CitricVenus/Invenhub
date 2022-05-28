@@ -1,5 +1,5 @@
 const login = async (credentials) => {
-    const res = await fetch("http://localhost:3000/usrs");
+    const res = await fetch("/usrs");
     const data = await res.json();
 
     const user = data.find(
@@ -9,4 +9,5 @@ const login = async (credentials) => {
     return user ? { nombre: user.nombre, admin: user.admin } : Promise.reject("User not found");
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { login };

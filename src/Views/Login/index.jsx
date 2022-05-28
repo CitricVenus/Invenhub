@@ -32,16 +32,18 @@ function Login({ setUser }) {
                 <input
                     type='text'
                     placeholder='Usuario'
+                    name='usuario'
                     onChange={(evt) => setName(evt.target.value)}
                     value={name}
                 />
                 <input
                     type='password'
+                    name='contra'
                     placeholder='Contraseña'
                     onChange={(evt) => setPass(evt.target.value)}
                     value={pass}
                 />
-                <button
+                <button name="submit-btn"
                     onClick={(e) => {
                         e.preventDefault();
                         onSubmit({ nombre: name, pass:sha256(pass).toString(encBase64) });

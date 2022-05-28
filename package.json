@@ -17,10 +17,12 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "server": "npx json-server --watch testItems.json",
+        "server": "npx json-server --watch database.json -p 4000",
+        "server:test": "npx json-server --watch testItems.json -p 4000",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "cy:open": "cypress open"
     },
     "eslintConfig": {
         "extends": [
@@ -39,5 +41,10 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    }
+    },
+    "devDependencies": {
+        "cypress": "^9.7.0",
+        "eslint-plugin-cypress": "^2.12.1"
+    },
+    "proxy": "http://localhost:4000"
 }
