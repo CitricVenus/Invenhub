@@ -1,3 +1,5 @@
+import encBase64 from "crypto-js/enc-base64";
+import sha256 from "crypto-js/sha256";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import loginService from "../../Services/loginService";
@@ -42,7 +44,7 @@ function Login({ setUser }) {
                 <button
                     onClick={(e) => {
                         e.preventDefault();
-                        onSubmit({ nombre: name, pass });
+                        onSubmit({ nombre: name, pass:sha256(pass).toString(encBase64) });
                     }}
                 >
                     Ingresar

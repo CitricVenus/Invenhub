@@ -1,9 +1,9 @@
 import "./inventory.css";
 import { BiSearch } from "react-icons/bi";
 import { AiFillPlusCircle, AiFillStop } from "react-icons/ai";
-import data from "./testItems.json";
 import DashBackBtn from "../General/DashBackBtn";
 import DashSectTtl from "../General/DashSectTtl";
+import { useEffect, useState } from "react";
 
 const icoStyle = {
     width: "max-content",
@@ -11,36 +11,39 @@ const icoStyle = {
     color: "gray",
 };
 
-function dataFetch() {
-    fetch("http://localhost:3000/inv").then((res) => {
-        return res.json();
-    }
-    ).then((data) => {
-        console.log(data);
-    });
-}
-async function DataPost(){
+// async function DataPost(){
 
-    const data = { id: "1", nombre: "test", precio: "1", cantidad: "1", UID: "1" };
+//     const data = { id: "1", nombre: "test", precio: "1", cantidad: "1", UID: "1" };
 
-    fetch("http://localhost:3000/inv", {
-    method: 'POST', // or 'PUT'
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-    console.log('Success:', data);
-    })
-    .catch((error) => {
-    console.error('Error:', error);
-    });
-}
+//     fetch("http://localhost:3000/inv", {
+//     method: 'POST', // or 'PUT'
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(data),
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//     console.log('Success:', data);
+//     })
+//     .catch((error) => {
+//     console.error('Error:', error);
+//     });
+// }
 
 function Inventory() {
-    let inventoryItems = [...data["inv"]];
+
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        fetch("http://localhost:3000/inv").then((res) => {
+            return res.json();
+        }
+        ).then((dat) => {
+            setData([...dat]);
+        });
+    }, [])
+    
 
     return (
         <div className='bg-page' id='inv-holder'>
@@ -50,8 +53,8 @@ function Inventory() {
                 <BiSearch />
                 <input type='text' placeholder='Buscar' />
             </span>
-            <button onClick={DataPost}>POST</button>
-            <button onClick={dataFetch}>FETCH</button>
+            {/* <button onClick={DataPost}>POST</button> */}
+            {/* <button onClick={dataFetch}>FETCH</button> */}
             <table id='inv-table'>
                 <tbody id='inv-tbody'>
                     <tr className='inv-row'>
@@ -75,12 +78,12 @@ function Inventory() {
                         </th>
                     </tr>
                     
-                    {inventoryItems.map((item, i) => (
-                        <tr className='inv-row' key={item.UID + i}>
+                    {data.map((item, i) => (
+                        <tr className='inv-row' key={item.id + i}>
                             <td className='inv-col'>{item.nombre}</td>
-                            <td className='inv-col'>{item.UID}</td>
-                            <td className='inv-col'>{item.cantidad}</td>
-                            <td className='inv-col'>{"$" + item.precio}</td>
+                            <td className='inv-col'>{item.id}</td>
+                            <td className='inv-col'>{Number(item.cantidad).toLocaleString()}</td>
+                            <td className='inv-col'>{"$ " + Number(item.precio).toLocaleString()}</td>
                             <td className='inv-col'>
                                 <button>
                                     <AiFillStop style={icoStyle} />
@@ -98,5 +101,7 @@ function Inventory() {
         </div>
     );
 }
+
+
 
 export default Inventory;

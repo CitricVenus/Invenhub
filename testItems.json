@@ -2,125 +2,47 @@
   "inv": [
     {
       "nombre": "Jabón zote",
-      "UID": "12312312",
+      "id": "12312312",
       "cantidad": 112,
       "precio": 43
     },
     {
       "nombre": "Tortillas",
-      "UID": "1231244",
+      "id": "1231244",
       "cantidad": 1112,
       "precio": 235
     },
     {
       "nombre": "Super producto gigante hyper grande",
-      "UID": "123122342342342342342312",
+      "id": "123122342342342342342312",
       "cantidad": 22112,
       "precio": 2145
     },
     {
       "nombre": "Donas",
-      "UID": "234235",
+      "id": "234235",
       "cantidad": 112,
       "precio": 1234
     },
     {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
-    },
-    {
-      "nombre": "Donas",
-      "UID": "234235",
-      "cantidad": 112,
-      "precio": 1234
+      "nombre": "TstNumber",
+      "precio": 1232145,
+      "cantidad": 12412,
+      "id": "-j3ux8F"
     }
   ],
   "usrs": [
     {
       "id": 1,
       "nombre": "admin",
-      "pass": "root",
+      "pass": "SBNJTRN+FjG7owHVrKtue7eqdM4RhdRWVl71HXN2d7I=",
       "admin": true
     },
     {
-      "id": 2,
-      "nombre": "juan",
-      "pass": "123",
-      "admin": false
-    },
-    {
-      "nombre": "test",
-      "pass": "123",
+      "nombre": "Mario",
+      "pass": "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
       "admin": false,
-      "id": 3
+      "id": 2
     }
   ]
 }

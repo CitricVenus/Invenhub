@@ -1,8 +1,7 @@
 import "./exit.css";
 import { BiSearch } from "react-icons/bi";
 import { AiFillPlusCircle, AiFillStop } from "react-icons/ai";
-import data from "../Inventory/testItems.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DashBackBtn from "../General/DashBackBtn";
 import DashSectTtl from "../General/DashSectTtl";
 
@@ -67,20 +66,20 @@ const ItemTable = ({ items, title, list, setList, isInv = false }) => {
                         )}
                     </tr>
                     {items.map((item, i) => (
-                        <tr className='ext-row' key={item.UID + i}>
+                        <tr className='ext-row' key={item.id + i}>
                             <td className='ext-col'>{item.nombre}</td>
-                            <td className='ext-col'>{item.UID}</td>
+                            <td className='ext-col'>{item.id}</td>
                             <td className='ext-col'>{item.cantidad}</td>
                             <td className='ext-col'>{"$" + item.precio}</td>
                             {isInv ? (
                                 <td className='ext-col'>
-                                    <button onClick={() => onClickAdd(item.UID)}>
+                                    <button onClick={() => onClickAdd(item.id)}>
                                         <AiFillPlusCircle style={icoStyle} />
                                     </button>
                                 </td>
                             ) : (
                                 <td className='ext-col'>
-                                    <button onClick={() => onClickRemove(item.UID)}>
+                                    <button onClick={() => onClickRemove(item.id)}>
                                         <AiFillStop style={icoStyle} />
                                     </button>
                                 </td>
@@ -95,8 +94,17 @@ const ItemTable = ({ items, title, list, setList, isInv = false }) => {
 
 function Exit() {
     const [curList, setCurList] = useState([]);
+    const [data, setData] = useState([]);
 
-    let inventoryItems = [...data["inv"]];
+
+    useEffect(() => {
+        fetch("http://localhost:3000/inv").then((res) => {
+            return res.json();
+        }
+        ).then((dat) => {
+            setData([...dat]);
+        });
+    }, [])
 
     return (
         <div className='bg-page' id='ext-holder'>
@@ -108,7 +116,7 @@ function Exit() {
             </span>
             <div className='ext-tables'>
                 <ItemTable
-                    items={inventoryItems}
+                    items={data}
                     title={"Inventario"}
                     isInv={true}
                     list={curList}

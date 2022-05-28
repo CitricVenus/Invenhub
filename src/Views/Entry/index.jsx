@@ -13,13 +13,12 @@ const icoStyle = {
 
 function Entry() {
 
-    const [Id, setId] = useState(""); 
     const [Nombre, setNombre] = useState("");
-    const [Precio, setPrecio] = useState("");
-    const [Cantidad, setCantidad] = useState("");
-    const [UID, setUID] = useState("");
+    const [Precio, setPrecio] = useState(0);
+    const [Cantidad, setCantidad] = useState(0);
 
     const [Error, setError] = useState("");
+    const [msg, setMsg] = useState("");
 
 
     async function DataPost(data){
@@ -40,11 +39,10 @@ function Entry() {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-    
+                setMsg('Producto agregado!');
             })
             .catch(error => {
                 this.setState({ errorMessage: error.toString() });
-                console.error('There was an error!', error);
                 setError(error);
             });
     }
@@ -52,12 +50,18 @@ function Entry() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        setMsg('')
+        setError('')
+
+        if (!Precio || !Cantidad){
+            setError('Campos inválidos')
+            return
+        }
         
         const data = {
             nombre: Nombre,
-            precio: Precio,
-            cantidad: Cantidad,
-            UID: UID
+            precio: Number(Precio),
+            cantidad: Number(Cantidad),
         };
 
         DataPost(data);
@@ -66,7 +70,6 @@ function Entry() {
         setNombre("");
         setPrecio("");
         setCantidad("");
-        setUID("");
     }
 
     return (
@@ -77,12 +80,15 @@ function Entry() {
                 <BiDuplicate style={icoStyle} />
                 <form onSubmit={handleSubmit}>
                     <div id='entry-items'>
-                        <input type='text' name='nombre' placeholder='Nombre' required onChange={(e) => setNombre(e.target.value)} value={Nombre} />
-                        <input type='text' name='precio' placeholder='Precio' required onChange={(e) => setPrecio(e.target.value)} value={Precio} />
-                        <input type='text' name='cantidad' placeholder='Cantidad' required onChange={(e)=> setCantidad(e.target.value)} value={Cantidad}/>
-                        <input type='text' name='UID' placeholder='UID' required onChange={(e)=> setUID(e.target.value)} value={UID} />
+                        <h3 className="entry-items-label">Nombre</h3>
+                        <input type='text' name='nombre' placeholder='Nombre' required onChange={(e) => setNombre(e.target.value)} value={Nombre} maxLength={20}/>
+                        <h3 className="entry-items-label">Precio</h3>
+                        <input type='number' name='precio' placeholder='Precio' required onChange={(e) => {if(e.target.value.length<11) setPrecio(e.target.value)}} value={Precio}/>
+                        <h3 className="entry-items-label">Cantidad</h3>
+                        <input type='number' name='cantidad' placeholder='Cantidad' required onChange={(e)=> {if(e.target.value.length<11)setCantidad(e.target.value)}} value={Cantidad}/>
                         <button type='submit'>Agregar</button>
                         {Error && <p className="error">{Error}</p>}
+                        {msg && <p>{msg}</p>}
                     </div>
                 </form>
             </div>

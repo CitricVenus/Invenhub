@@ -20,10 +20,15 @@
     max-width: 300px;
 }
 
+.entry-items-label{
+    align-self: flex-start;
+    font-weight: normal;
+}
+
 #entry-items {
     display: flex;
     flex-direction: column;
-    row-gap: 25px;
+    row-gap: 15px;
     width: 100%;
     max-width: 300px;
     align-items: center;
@@ -34,6 +39,11 @@
     border-style: none;
     border: solid black 1px;
     padding: 10px;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 #entry-items > button {

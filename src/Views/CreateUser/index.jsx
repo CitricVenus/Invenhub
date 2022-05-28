@@ -1,3 +1,5 @@
+import encBase64 from 'crypto-js/enc-base64';
+import sha256 from 'crypto-js/sha256';
 import React, { useState } from 'react'
 import DashBackBtn from '../General/DashBackBtn';
 import DashSectTtl from '../General/DashSectTtl';
@@ -52,7 +54,7 @@ function CreateUser() {
     
     const nUser = {
         nombre: usr,
-        pass,
+        pass:sha256(pass).toString(encBase64),
         admin: isAdmin,
     };
 
