@@ -31,7 +31,109 @@ describe('Funcionalidad de la página de Login', () => {
     })
     it('El usuario no puede iniciar sesión si se dejan espacios vacios',()=>{
         cy.get('button[name="submit-btn"]').click()
-
         cy.get('.error').contains('Los datos ingresados son incorrectos')
     })
+
+    //falta hacer este, no se si lo implemente bien
+    it('No se puede dejar el nombre de un producto vacio',()=>{
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-opts > :nth-child(1)').click()
+        cy.get('#entry-items > button').click()
+        cy.get('#entry-items > :nth-child(9)').should('not.exist')
+      
+    })
+
+    it('No se pued poner como 0 o menor el precio',()=>{
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-opts > :nth-child(1)').click()
+        cy.get('[type="text"]').type('Productox')
+        cy.get('[name="precio"]').clear()
+        cy.get('[name="precio"]').type('0')
+        cy.get('[name="cantidad"]').clear()
+        cy.get('[name="cantidad"]').type('123')
+        cy.get('#entry-items > button').click()
+        cy.get('.error').contains('Campos inválidos')
+      
+    })
+    it('No se pued poner como 0 o menor la cantidad',()=>{
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-opts > :nth-child(1)').click()
+        cy.get('[type="text"]').type('Productox')
+        cy.get('[name="precio"]').clear()
+        cy.get('[name="precio"]').type('123')
+        cy.get('[name="cantidad"]').clear()
+        cy.get('[name="cantidad"]').type('0')
+        cy.get('#entry-items > button').click()
+        cy.get('.error').contains('Campos inválidos')
+      
+    })
+
+
+    it('Se agrega un producto nuevo',()=>{
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-opts > :nth-child(1)').click()
+        cy.get('[type="text"]').type('Productox')
+        cy.get('[name="precio"]').clear()
+        cy.get('[name="precio"]').type('123')
+        cy.get('[name="cantidad"]').clear()
+        cy.get('[name="cantidad"]').type('4')
+        cy.get('#entry-items > button').click()
+        cy.get('#entry-items > :nth-child(9)').should('exist')
+    
+      
+    })
+
+    it('Se agrega un nuevo usuario',()=>{
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-holder > :nth-child(2)').click()
+        cy.get('[type="text"]').type('test')
+        cy.get('[name="contra"]').type('a')
+        cy.get('[name="cantidad"]').type('a')
+        cy.get('.create-form > button').click()
+        cy.get('p').should('exist')
+       
+      
+    })
+//No se si lo implemente bien
+    it('No agrega un nuevo usuario',()=>{
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-holder > :nth-child(2)').click()
+        cy.get('[name="contra"]').type('a')
+        cy.get('[name="cantidad"]').type('a')
+        cy.get('.create-form > button').click()
+        cy.get('p').should('not.exist')
+        
+      
+    })
+
+    it('Las contraseñas no coinciden',()=>{
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-holder > :nth-child(2)').click()
+        cy.get('[type="text"]').type('test')
+        cy.get('[name="contra"]').type('a')
+        cy.get('[name="cantidad"]').type('f')
+        cy.get('.create-form > button').click()
+        cy.get('.error').contains("Las contraseñas no coinciden")
+        
+      
+    })
+
+
+
+
+
 })

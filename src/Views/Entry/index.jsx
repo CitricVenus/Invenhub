@@ -40,6 +40,7 @@ function Entry() {
                     return Promise.reject(error);
                 }
                 setMsg('Producto agregado!');
+                setError("");
             })
             .catch(error => {
                 this.setState({ errorMessage: error.toString() });
@@ -52,10 +53,15 @@ function Entry() {
         event.preventDefault();
         setMsg('')
         setError('')
+        console.log(Nombre)
 
-        if (!Precio || !Cantidad){
+        if (Precio<=0 || Cantidad<=0){
             setError('Campos inválidos')
+            setMsg('');
             return
+        }
+        if (Nombre === ""){
+            setError('Campos inválidos')
         }
         
         const data = {
@@ -87,7 +93,7 @@ function Entry() {
                         <h3 className="entry-items-label">Cantidad</h3>
                         <input type='number' name='cantidad' placeholder='Cantidad' required onChange={(e)=> {if(e.target.value.length<11)setCantidad(e.target.value)}} value={Cantidad}/>
                         <button type='submit'>Agregar</button>
-                        {Error && <p className="error">{Error}</p>}
+                         <p className="error">{Error}</p>
                         {msg && <p>{msg}</p>}
                     </div>
                 </form>

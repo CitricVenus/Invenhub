@@ -13,6 +13,7 @@ function CreateUser() {
   const [isAdmin,setIsAdmin] = useState(false);
 
   const [Error, setError] = useState("");
+  const [msg, setMsg] = useState("");
 
   async function DataPost(data){
 
@@ -35,6 +36,7 @@ function CreateUser() {
             }
 
             setError("");
+            setMsg('Usuario agregado!');
 
         })
         .catch(error => {
@@ -46,12 +48,11 @@ function CreateUser() {
 
   function handleSubmit(event) {
     event.preventDefault();
-
+  
     if(pass!==confPass){
         setError("Las contraseñas no coinciden");
         return;
-    }
-    
+    }    
     const nUser = {
         nombre: usr,
         pass:sha256(pass).toString(encBase64),
@@ -81,6 +82,7 @@ function CreateUser() {
             </div>
             <button type='submit'>Crear</button>
             {Error && <p className='error'>{Error}</p>}
+            {msg && <p>{msg}</p>}
         </form>
     </div>
   )
