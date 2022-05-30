@@ -112,7 +112,7 @@ function Exit() {
             <DashSectTtl text="Salidas"/>
             <span id='ext-search-bar'>
                 <BiSearch />
-                <input type='text' placeholder='Buscar' />
+                <input type='text' name="search" placeholder='Buscar' />
             </span>
             <div className='ext-tables'>
                 <ItemTable

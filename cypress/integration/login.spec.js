@@ -132,8 +132,23 @@ describe('Funcionalidad de la página de Login', () => {
       
     })
 
+    it('Se agregan productos de mas a una "salida"',()=>{
+        
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-opts > :nth-child(2)').click()
+        
+        
+    })
 
+    it('Se realiza una busqueda invalida',()=>{
 
-
-
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-opts > :nth-child(2)').click()
+        //Espacio vacio
+        cy.get('[type="text"]').type('         ')
+    })
 })
