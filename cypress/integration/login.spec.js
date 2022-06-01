@@ -152,3 +152,48 @@ describe('Funcionalidad de la página de Login', () => {
         cy.get('[type="text"]').type('         ')
     })
 })
+
+describe('Funcionalidad de la página de Inventario', () => {
+    beforeEach(()=>{
+        cy.visit('http://localhost:3000/inventory')
+    })
+
+    it('Inventario - Se intenta restar stock del producto',()=>{
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-opts > :nth-child(3)').click()
+
+        //cy.get('td[class="inv-col"]').type(admCreds.usr)
+        //cy.get('td[class="inv-col"]  > :nth-child(1)').click()
+
+        cy.get('tbody[id="inv-tbody"]  > :nth-child(2)').click()
+        //cy.get('tr[class="inv-row"]  > :nth-child(1)').click()
+
+
+
+        //cy.get('Button:contains("Create User")').should('exist')
+    })
+
+    
+    it('Inventario - Se realiza una búsqueda de un producto Existente',()=>{
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-opts > :nth-child(3)').click()
+        cy.get('input[placeholder="Buscar"]').type("Donas")
+
+        cy.get('td[class="inv-col"]').should('exist')
+    })
+
+    it('Inventario - Se realiza una búsqueda de un producto Inexistente',()=>{
+        cy.get('input[name="usuario"]').type(admCreds.usr)
+        cy.get('input[name="contra"]').type(admCreds.pass)
+        cy.get('button[name="submit-btn"]').click()
+        cy.get('#dash-opts > :nth-child(3)').click()
+        cy.get('input[placeholder="Buscar"]').type("Videojuegos")
+
+        cy.get('td[class="inv-col"]').should('not.exist')
+    })
+
+})
