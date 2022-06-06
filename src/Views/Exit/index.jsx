@@ -15,28 +15,30 @@ const ItemTable = ({ items, title, list, setList, isInv = false , myQuery}) => {
 
     
     
-    const onClickAdd = (uid) => {
-        let itemToAdd = items.find((it) => it.UID === uid);
+    const onClickAdd = (id) => {
+        let itemToAdd = items.find((it) => it.id === id);
         if (!itemToAdd) return;
         itemToAdd = { ...itemToAdd };
 
-        const existingItem = list.find((it) => it.UID === uid);
+        const existingItem = list.find((it) => it.id === id);
         if (existingItem) {
             itemToAdd.cantidad = existingItem.cantidad + 1;
-            setList(list.map((it) => (it.UID === uid ? itemToAdd : it)));
+            setList(list.map((it) => (it.id === id ? itemToAdd : it)));
         } else {
             itemToAdd.cantidad = 1;
             setList([...list, itemToAdd]);
         }
+        console.log(itemToAdd);
+        console.log(list)
     };
 
-    const onClickRemove = (uid) => {
-        let itemToRemove = items.find((it) => it.UID === uid);
+    const onClickRemove = (id) => {
+        let itemToRemove = items.find((it) => it.id === id);
         if (itemToRemove && itemToRemove.cantidad > 1) {
             itemToRemove.cantidad -= 1;
             setList([...list]);
         } else {
-            setList(list.filter((it) => it.UID !== uid));
+            setList(list.filter((it) => it.id !== id));
         }
     };
 
@@ -92,8 +94,8 @@ const ItemTable = ({ items, title, list, setList, isInv = false , myQuery}) => {
                             )}
                         </tr>
                     ))*/
-
-                    items?.filter(post => {
+                    
+                    isInv ? items?.filter(post => {
                         if (myQuery === '') {
                         return post;
                         } else if (post.nombre.toLowerCase().includes(myQuery?.toLowerCase())) {
@@ -105,17 +107,34 @@ const ItemTable = ({ items, title, list, setList, isInv = false , myQuery}) => {
                             <td className='inv-col'>{post.id}</td>
                             <td className='inv-col'>{Number(post.cantidad).toLocaleString()}</td>
                             <td className='inv-col'>{"$ " + Number(post.precio).toLocaleString()}</td>
-                            <td className='inv-col'>
-                            <button>
-                                <AiFillStop style={icoStyle} />
-                            </button>
-                            </td>
-                            <td className='inv-col'>
-                                <button>
+                            {isInv ? <td className='inv-col'>
+                                <button onClick={()=> onClickAdd(post.id)}>
                                     <AiFillPlusCircle style={icoStyle} />
                                 </button>
-                            </td>
-                            
+                            </td> :
+                            <td className='inv-col'>
+                                <button onClick={()=> onClickRemove(post.id)}>
+                                    <AiFillStop style={icoStyle} />
+                                </button>
+                            </td>}
+                        </tr>
+                    )) :
+                    list.map((post, index) => (
+                        <tr className='inv-row' key={post.id + index}>
+                            <td className='inv-col'>{post.nombre}</td>
+                            <td className='inv-col'>{post.id}</td>
+                            <td className='inv-col'>{Number(post.cantidad).toLocaleString()}</td>
+                            <td className='inv-col'>{"$ " + Number(post.precio).toLocaleString()}</td>
+                            {isInv ? <td className='inv-col'>
+                                <button onClick={()=> onClickAdd(post.id)}>
+                                    <AiFillPlusCircle style={icoStyle} />
+                                </button>
+                            </td> :
+                            <td className='inv-col'>
+                                <button onClick={()=> onClickRemove(post.id)}>
+                                    <AiFillStop style={icoStyle} />
+                                </button>
+                            </td>}
                         </tr>
                     ))
                     
@@ -127,12 +146,6 @@ const ItemTable = ({ items, title, list, setList, isInv = false , myQuery}) => {
     );
 };
 
-/*
- <span id='ext-search-bar'>
-                <BiSearch />
-                <input type='text' name="search" placeholder='Buscar' />
-            </span>
-*/
 function Exit() {
     
     const [query, setQuery] = useState("")
@@ -155,7 +168,9 @@ function Exit() {
             <DashBackBtn />
             <DashSectTtl text="Salidas"/>
 
-            <input placeholder="Enter Post Title" onChange={event => setQuery(event.target.value)} />
+            <span id='ext-search-bar'>
+                <input placeholder="Nombre de item a buscar" onChange={event => setQuery(event.target.value)} />
+            </span>
 
             <div className='ext-tables'>
                 <ItemTable

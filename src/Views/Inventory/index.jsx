@@ -60,8 +60,9 @@ function Inventory() {
             <DashBackBtn />
             <DashSectTtl text="Inventario"/>
             
-            
-            <input placeholder="Enter Post Title" onChange={event => setQuery(event.target.value)} />
+            <span id='inv-search-bar'>
+                <input placeholder="Nombre de item a buscar" onChange={event => setQuery(event.target.value)} />
+            </span>
            
 
             <table id='inv-table'>

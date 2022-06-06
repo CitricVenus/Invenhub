@@ -49,19 +49,16 @@ function Dashboard({ setUser, user }) {
                 <button className='dash-opt' onClick={() => handleClick("/entry")}>
                     <BiPackage style={icoStyle} />
                     <h3>Entradas</h3>
-                    Entradas
                 </button>
 
                 <button className='dash-opt' onClick={() => handleClick("/exit")}>
                     <BiWallet style={icoStyle} />
                     <h3>Salidas</h3>
-                    Salidas
                 </button>
                 
                 <button className='dash-opt' onClick={() => handleClick("/inventory")}>
                     <BiBookBookmark style={icoStyle} />
                     <h3>Inventario</h3>
-                    Inventario
                 </button>
             </section>
         </div>
