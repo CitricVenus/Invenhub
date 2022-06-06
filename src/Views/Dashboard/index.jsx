@@ -1,6 +1,7 @@
 import "./dashboard.css";
 import { BiBookBookmark, BiWallet, BiPackage } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const icoStyle = {
     height: "max-content",
@@ -16,10 +17,26 @@ const icoStyle = {
 
 function Dashboard({ setUser, user }) {
     const navigate = useNavigate();
+    const [income, setIncome] = useState(0)
 
     const handleClick = (route) => {
         navigate(route);
     };
+
+    const fetchIncome = () =>{
+        fetch("/income", {
+            method: 'GET', // or 'PUT'
+        })
+        .then(response => response.json())
+        .then(d=>{
+            setIncome(d.ammount)
+        })
+    }
+
+    useEffect(() => {
+      fetchIncome()
+    }, [])
+    
 
     return (
         <div className='bg-page' id='dash-holder'>
@@ -42,7 +59,7 @@ function Dashboard({ setUser, user }) {
                 Create User
             </button>}
             <div className='dash-ttl-holder'>
-                <span id='income'>Income: $999,999,999</span>
+                <span id='income'>Income: ${income}</span>
                 <h1 id='dash-ttl'>Dashboard</h1>
             </div>
             <section id='dash-opts'>

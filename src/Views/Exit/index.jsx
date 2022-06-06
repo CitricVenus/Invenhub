@@ -28,8 +28,6 @@ const ItemTable = ({ items, title, list, setList, isInv = false , myQuery}) => {
             itemToAdd.cantidad = 1;
             setList([...list, itemToAdd]);
         }
-        console.log(itemToAdd);
-        console.log(list)
     };
 
     const onClickRemove = (id) => {
@@ -41,7 +39,6 @@ const ItemTable = ({ items, title, list, setList, isInv = false , myQuery}) => {
             setList(list.filter((it) => it.id !== id));
         }
     };
-
     return (
         <div className='ext-table-side'>
             <table id='ext-table'>
@@ -147,14 +144,26 @@ const ItemTable = ({ items, title, list, setList, isInv = false , myQuery}) => {
 };
 
 function Exit() {
+
     
     const [query, setQuery] = useState("")
 
     const [curList, setCurList] = useState([]);
     const [data, setData] = useState([]);
+    const [income,setIncome] = useState(0)
 
+    const fetchIncome = () =>{
+        fetch("/income", {
+            method: 'GET', // or 'PUT'
+        })
+        .then(response => response.json())
+        .then(d=>{
+            setIncome(d.ammount)
+        })
+    }
 
     useEffect(() => {
+        fetchIncome()
         fetch("/inv").then((res) => {
             return res.json();
         }
@@ -162,6 +171,50 @@ function Exit() {
             setData([...dat]);
         });
     }, [])
+    
+    
+    const pagar = ()=>{
+        
+        const earnings = curList.reduce((total, it) => Number(total) + Number(it.precio) * Number(it.cantidad), 0)
+        setCurList([])
+        const itemsToMod = curList.map(it => {
+            it.cantidad = data.find(itm => itm.id === it.id).cantidad - it.cantidad
+            return it
+        })
+        
+        for(let itm of itemsToMod){
+            fetch("/inv/"+itm.id, {
+                method: 'PUT', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(itm),
+                })
+                .then(response => response.json())
+                .then(d => {
+                    const nData = data.map(it => {
+                        if(it.id === itm.id) it.cantidad = itm.cantidad
+                        return it
+                    })
+                    setData([...nData])
+                })
+                .catch((error) => {
+                console.error('Error:', error);
+                });
+        }
+        setIncome(income+earnings)
+        const inc = {"ammount":income+earnings}
+        fetch("/income", {
+            method: 'PUT', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(inc),
+            })
+            .catch((error) => {
+            console.error('Error:', error);
+            });
+    }
 
     return (
         <div className='bg-page' id='ext-holder'>
@@ -184,7 +237,7 @@ function Exit() {
                 <ItemTable items={curList} title={"Salida"} list={curList} setList={setCurList} />
             </div>
             <p>Total: $ {curList.reduce((total, it) => total + it.precio * it.cantidad, 0)}</p>
-            <button className='ext-btn'>Pagar</button>
+            <button className='ext-btn' onClick={()=>pagar()}>Pagar</button>
         </div>
     );
 }

@@ -3,19 +3,19 @@
     {
       "nombre": "Jabón zote",
       "id": "12312312",
-      "cantidad": 112,
+      "cantidad": 99,
       "precio": 43
     },
     {
       "nombre": "Tortillas",
       "id": "1231244",
-      "cantidad": 1112,
+      "cantidad": 1103,
       "precio": 235
     },
     {
       "nombre": "Super producto gigante hyper grande",
       "id": "123122342342342342342312",
-      "cantidad": 22112,
+      "cantidad": 22111,
       "precio": 2145
     },
     {
@@ -23,7 +23,7 @@
       "id": "234235",
       "cantidad": 112,
       "precio": 1234
-    }  
+    }
   ],
   "usrs": [
     {
@@ -38,5 +38,8 @@
       "admin": false,
       "id": 2
     }
-  ]
+  ],
+  "income": {
+    "ammount": 22893
+  }
 }

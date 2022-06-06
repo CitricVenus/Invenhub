@@ -12,26 +12,6 @@ const icoStyle = {
     color: "gray",
 };
 
-// async function DataPost(){
-
-//     const data = { id: "1", nombre: "test", precio: "1", cantidad: "1", UID: "1" };
-
-//     fetch("http://localhost:3000/inv", {
-//     method: 'POST', // or 'PUT'
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(data),
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//     console.log('Success:', data);
-//     })
-//     .catch((error) => {
-//     console.error('Error:', error);
-//     });
-// }
-
 {/* <button onClick={DataPost}>POST</button> */}
 {/* <button onClick={dataFetch}>FETCH</button> */}
 //WORKING
@@ -53,6 +33,31 @@ function Inventory() {
             setData([...dat]);
         });
     }, [])
+
+    async function DataPost(item,remove){
+        if(remove){
+            item.cantidad -= 1
+        }else{
+            item.cantidad += 1
+        }
+        fetch("/inv/"+item.id, {
+        method: 'PUT', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item),
+        })
+        .then(response => response.json())
+        .then(d => {
+            const nData = data.map(it => {
+                return it
+            })
+            setData([...nData])
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
+    }
     
 
     return (
@@ -121,12 +126,12 @@ function Inventory() {
                             <td className='inv-col'>{Number(post.cantidad).toLocaleString()}</td>
                             <td className='inv-col'>{"$ " + Number(post.precio).toLocaleString()}</td>
                             <td className='inv-col'>
-                            <button>
+                            <button onClick={()=>DataPost(post,true)}>
                                 <AiFillStop style={icoStyle} />
                             </button>
                             </td>
                             <td className='inv-col'>
-                                <button>
+                                <button onClick={()=>DataPost(post,false)}>
                                     <AiFillPlusCircle style={icoStyle} />
                                 </button>
                             </td>
