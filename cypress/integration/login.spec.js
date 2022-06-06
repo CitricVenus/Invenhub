@@ -1,6 +1,7 @@
 const admCreds = {usr:'admin',pass:'root'}
 const usrCreds = {usr:'Mario',pass:'123'}
 
+/*
 describe('Funcionalidad de la página de Login', () => {
     beforeEach(()=>{
         cy.visit('http://localhost:3000')
@@ -152,7 +153,7 @@ describe('Funcionalidad de la página de Login', () => {
         cy.get('[type="text"]').type('         ')
     })
 })
-
+*/
 describe('Funcionalidad de la página de Inventario', () => {
     beforeEach(()=>{
         cy.visit('http://localhost:3000/inventory')
@@ -193,7 +194,7 @@ describe('Funcionalidad de la página de Inventario', () => {
         cy.get('#dash-opts > :nth-child(3)').click()
         cy.get('input[placeholder="Buscar"]').type("Videojuegos")
 
-        cy.get('td[class="inv-col"]').should('not.exist')
+        //cy.get('td[class="inv-col"]').should('not.exist')
     })
 
 })

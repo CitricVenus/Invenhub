@@ -11,7 +11,10 @@ const icoStyle = {
     color: "gray",
 };
 
-const ItemTable = ({ items, title, list, setList, isInv = false }) => {
+const ItemTable = ({ items, title, list, setList, isInv = false , myQuery}) => {
+
+    
+    
     const onClickAdd = (uid) => {
         let itemToAdd = items.find((it) => it.UID === uid);
         if (!itemToAdd) return;
@@ -65,7 +68,10 @@ const ItemTable = ({ items, title, list, setList, isInv = false }) => {
                             </th>
                         )}
                     </tr>
-                    {items.map((item, i) => (
+
+                    {
+                    
+                    /*items.map((item, i) => (
                         <tr className='ext-row' key={item.id + i}>
                             <td className='ext-col'>{item.nombre}</td>
                             <td className='ext-col'>{item.id}</td>
@@ -85,14 +91,52 @@ const ItemTable = ({ items, title, list, setList, isInv = false }) => {
                                 </td>
                             )}
                         </tr>
-                    ))}
+                    ))*/
+
+                    items?.filter(post => {
+                        if (myQuery === '') {
+                        return post;
+                        } else if (post.nombre.toLowerCase().includes(myQuery?.toLowerCase())) {
+                        return post;
+                        }
+                    }).map((post, index) => (
+                        <tr className='inv-row' key={post.id + index}>
+                            <td className='inv-col'>{post.nombre}</td>
+                            <td className='inv-col'>{post.id}</td>
+                            <td className='inv-col'>{Number(post.cantidad).toLocaleString()}</td>
+                            <td className='inv-col'>{"$ " + Number(post.precio).toLocaleString()}</td>
+                            <td className='inv-col'>
+                            <button>
+                                <AiFillStop style={icoStyle} />
+                            </button>
+                            </td>
+                            <td className='inv-col'>
+                                <button>
+                                    <AiFillPlusCircle style={icoStyle} />
+                                </button>
+                            </td>
+                            
+                        </tr>
+                    ))
+                    
+                    }
+
                 </tbody>
             </table>
         </div>
     );
 };
 
+/*
+ <span id='ext-search-bar'>
+                <BiSearch />
+                <input type='text' name="search" placeholder='Buscar' />
+            </span>
+*/
 function Exit() {
+    
+    const [query, setQuery] = useState("")
+
     const [curList, setCurList] = useState([]);
     const [data, setData] = useState([]);
 
@@ -110,10 +154,9 @@ function Exit() {
         <div className='bg-page' id='ext-holder'>
             <DashBackBtn />
             <DashSectTtl text="Salidas"/>
-            <span id='ext-search-bar'>
-                <BiSearch />
-                <input type='text' name="search" placeholder='Buscar' />
-            </span>
+
+            <input placeholder="Enter Post Title" onChange={event => setQuery(event.target.value)} />
+
             <div className='ext-tables'>
                 <ItemTable
                     items={data}
@@ -121,6 +164,7 @@ function Exit() {
                     isInv={true}
                     list={curList}
                     setList={setCurList}
+                    myQuery={query}
                 />
                 <ItemTable items={curList} title={"Salida"} list={curList} setList={setCurList} />
             </div>
